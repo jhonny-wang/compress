@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<script src="js/exif.js"></script>
+	<!-- // <script src="js/compress.js"></script> -->
+</head>
+<body>
+	<input accept="image/*" capture="camera" type="file" id="fileupload">
+	<img id="saveimg" src="images/1.jpg" alt="">
+	<canvas id="canvas"></canvas>
+	<img id="showimg" src="" alt="">
+	<textarea name="" id="text" cols="30" rows="10"></textarea>
+<script>
+var fileUpload = document.getElementById("fileupload");
+var saveimg = document.getElementById("saveimg");
+var showimg = document.getElementById("showimg");
+var text = document.getElementById("text");
+
+// fileUpload.onchange = function(e){
+	// var file = e.target.files[0];
+	var cvs = document.getElementById("canvas");
+	cvs.width=720;
+	cvs.height=720;
+	var ctx = cvs.getContext("2d");
+	// var render = new fileReader();
+	// render.readAsDataURL(file);
+	// render.onload = function(){
+
+	// }
+	saveimg.onload = function(){
+		ctx.drawImage(saveimg,0,0);
+		newImageData = cvs.toDataURL("image/png");
+		showimg.src = newImageData;
+		text.innerHTML = newImageData;
+		var newdata = newImageData.split(",")[1];
+		console.log(newdata.length);
+	}
+// }
+var buffer = new ArrayBuffer(20);
+console.log(buffer);
+</script>
+</body>
+</html>
